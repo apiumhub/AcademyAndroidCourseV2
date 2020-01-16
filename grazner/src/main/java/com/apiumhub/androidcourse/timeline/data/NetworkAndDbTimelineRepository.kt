@@ -9,8 +9,7 @@ class NetworkAndDbTimelineRepository(
   private val api: TimelineApi,
   private val dbClient: TimelineDao
 ) : TimelineRepository {
-  override suspend fun getTimeline(): List<Graznee> {
-    return api.getTimeline()
-        .map { Graznee(it.author, it.body, it.timestamp) }
-  }
+  override suspend fun getTimeline(): List<Graznee> =
+    runCatching { api.getTimeline().map(::Graznee) }
+      .getOrElse { dbClient.getAll().map(::Graznee) }
 }
