@@ -96,14 +96,14 @@ workflows:
             - variant: "$VARIANT"
       - deploy-to-bitrise-io@1.9.2: {}
       - cache-push@2.2.1: {}
-app:
+grazner:
   envs:
     - opts:
         is_expand: false
       PROJECT_LOCATION: "."
     - opts:
         is_expand: false
-      MODULE: app
+      MODULE: grazner
     - opts:
         is_expand: false
       VARIANT: debug
