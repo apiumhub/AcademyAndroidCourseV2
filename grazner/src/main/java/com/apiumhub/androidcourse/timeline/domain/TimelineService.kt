@@ -1,10 +1,10 @@
 package com.apiumhub.androidcourse.timeline.domain
 
 class TimelineService(
-  timelineNetworkRepository: TimelineRepository,
-  timelineDatabaseRepository: TimelineRepository
+  private val timelineNetworkRepository: TimelineRepository,
+  private val timelineDatabaseRepository: TimelineRepository
 ) {
   suspend fun getTimeline(): List<Graznee> {
-    TODO()
+    return timelineNetworkRepository.getTimeline()
   }
 }
