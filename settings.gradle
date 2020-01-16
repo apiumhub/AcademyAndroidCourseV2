@@ -1,2 +1,2 @@
-include ':grazner'
+include ':grazner', ':fakeserver'
 rootProject.name='AndroidCourse'
