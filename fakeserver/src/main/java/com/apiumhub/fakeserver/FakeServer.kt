@@ -38,10 +38,6 @@ object FakeServer {
 
 private fun Application.module() {
   install(DefaultHeaders)
-  install(CallLogging) {
-    level = Level.INFO
-    filter { call -> call.request.path().startsWith("/timeline") }
-  }
   install(ContentNegotiation) { gson() }
   install(Routing) {
     get("/status") {
