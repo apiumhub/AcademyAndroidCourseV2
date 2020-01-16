@@ -1,5 +1,6 @@
-package com.apiumhub.androidcourse.timeline.data
+package com.apiumhub.androidcourse.timeline
 
+import com.apiumhub.androidcourse.timeline.data.TimelineApi
 import com.apiumhub.androidcourse.timeline.data.db.TimelineDatabaseRepository
 import com.apiumhub.androidcourse.timeline.data.network.TimelineNetworkRepository
 import com.apiumhub.androidcourse.timeline.domain.TimelineService

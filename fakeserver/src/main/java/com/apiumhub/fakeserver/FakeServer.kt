@@ -14,8 +14,10 @@ import io.ktor.routing.get
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 
-fun main() {
-  embeddedServer(Netty, 8080, watchPaths = listOf("FakeServerKt"), module = Application::module).start()
+object FakeServer {
+  fun start() {
+    embeddedServer(Netty, 8080, module = Application::module).start()
+  }
 }
 
 fun Application.module() {
@@ -27,11 +29,13 @@ fun Application.module() {
       call.respond(HttpStatusCode.OK, Test())
     }
     get("/timeline") {
-      call.respond(HttpStatusCode.OK, listOf(
-        Graznee("John", "Hello world!", System.currentTimeMillis()),
-        Graznee("Alice", "This is my first graznee", System.currentTimeMillis()),
-        Graznee("Jane", "Hello from Ktor!", System.currentTimeMillis())
-      ))
+      call.respond(
+        HttpStatusCode.OK, listOf(
+          Graznee("John", "Hello world!", System.currentTimeMillis()),
+          Graznee("Alice", "This is my first graznee", System.currentTimeMillis()),
+          Graznee("Jane", "Hello from Ktor!", System.currentTimeMillis())
+        )
+      )
     }
   }
 }

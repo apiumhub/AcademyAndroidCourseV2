@@ -1,21 +1,23 @@
 package com.apiumhub.androidcourse
 
 import android.app.Application
-import com.apiumhub.androidcourse.timeline.data.koinTimelineModule
+import com.apiumhub.androidcourse.timeline.koinTimelineModule
+import com.apiumhub.fakeserver.FakeServer
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
 class GraznerApp : Application() {
 
   private val koinModules = listOf(
-      koinNetworkModule,
-      koinDatabaseModule,
-      koinTimelineModule
+    koinNetworkModule,
+    koinDatabaseModule,
+    koinTimelineModule
   )
 
   override fun onCreate() {
     super.onCreate()
     initializeKoin()
+    startFakeServer()
   }
 
   private fun initializeKoin() {
@@ -23,5 +25,9 @@ class GraznerApp : Application() {
       androidContext(this@GraznerApp)
       modules(koinModules)
     }
+  }
+
+  private fun startFakeServer() {
+    FakeServer.start()
   }
 }
