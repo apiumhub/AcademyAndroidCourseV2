@@ -26,10 +26,23 @@ fun Application.module() {
     get("/status") {
       call.respond(HttpStatusCode.OK, Test())
     }
+    get("/timeline") {
+      call.respond(HttpStatusCode.OK, listOf(
+        Graznee("John", "Hello world!", System.currentTimeMillis()),
+        Graznee("Alice", "This is my first graznee", System.currentTimeMillis()),
+        Graznee("Jane", "Hello from Ktor!", System.currentTimeMillis())
+      ))
+    }
   }
 }
 
 data class Test(
   val hello: String = "Hello",
   val world: String = "World"
+)
+
+data class Graznee(
+  val author: String,
+  val body: String,
+  val timestamp: Long
 )
