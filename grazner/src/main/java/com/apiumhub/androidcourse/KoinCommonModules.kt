@@ -1,5 +1,6 @@
 package com.apiumhub.androidcourse
 
+import com.apiumhub.androidcourse.timeline.data.db.TimelineDatabase
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -27,5 +28,5 @@ val koinNetworkModule = module {
 }
 
 val koinDatabaseModule = module {
-
+  single { TimelineDatabase() }
 }
