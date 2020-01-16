@@ -6,7 +6,7 @@ import com.apiumhub.androidcourse.timeline.data.network.GrazneeNetworkDto
 data class Graznee(
   val author: String,
   val body: String,
-  val timestamp: Long
+  val timestamp: String
 ) {
   constructor(networkModel: GrazneeNetworkDto) : this(
     author = networkModel.author,

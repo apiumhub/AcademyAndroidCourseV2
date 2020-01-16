@@ -10,5 +10,5 @@ data class GrazneeDbEntity(
   val id: String,
   val author: String,
   val body: String,
-  val timestamp: Long
+  val timestamp: String
 )
