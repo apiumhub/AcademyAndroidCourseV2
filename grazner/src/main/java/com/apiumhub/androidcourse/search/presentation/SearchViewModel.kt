@@ -1,13 +1,13 @@
-package com.apiumhub.androidcourse.notifications
+package com.apiumhub.androidcourse.search.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class NotificationsViewModel : ViewModel() {
+class SearchViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "This is search Fragment"
     }
     val text: LiveData<String> = _text
 }

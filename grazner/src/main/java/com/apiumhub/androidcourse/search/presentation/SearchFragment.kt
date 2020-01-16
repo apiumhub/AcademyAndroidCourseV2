@@ -1,4 +1,4 @@
-package com.apiumhub.androidcourse.search
+package com.apiumhub.androidcourse.search.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_timeline"
-        android:name="com.apiumhub.androidcourse.timeline.TimelineFragment"
+        android:name="com.apiumhub.androidcourse.timeline.presentation.TimelineFragment"
         android:label="@string/title_timeline"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.apiumhub.androidcourse.search.SearchFragment"
+        android:name="com.apiumhub.androidcourse.search.presentation.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.apiumhub.androidcourse.notifications.NotificationsFragment"
+        android:name="com.apiumhub.androidcourse.notifications.presentation.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
 </navigation>

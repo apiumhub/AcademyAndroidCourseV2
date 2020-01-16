@@ -1,4 +1,4 @@
-package com.apiumhub.androidcourse.timeline
+package com.apiumhub.androidcourse.timeline.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,13 +1,13 @@
-package com.apiumhub.androidcourse.timeline
+package com.apiumhub.androidcourse.notifications.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class TimelineViewModel : ViewModel() {
+class NotificationsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is timeline Fragment"
+        value = "This is notifications Fragment"
     }
     val text: LiveData<String> = _text
 }

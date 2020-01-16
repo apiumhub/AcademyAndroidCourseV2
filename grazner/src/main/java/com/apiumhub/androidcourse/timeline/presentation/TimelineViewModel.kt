@@ -1,13 +1,13 @@
-package com.apiumhub.androidcourse.search
+package com.apiumhub.androidcourse.timeline.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class SearchViewModel : ViewModel() {
+class TimelineViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is search Fragment"
+        value = "This is timeline Fragment"
     }
     val text: LiveData<String> = _text
 }
