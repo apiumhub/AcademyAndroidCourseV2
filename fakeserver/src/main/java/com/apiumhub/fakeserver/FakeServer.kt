@@ -1,5 +1,6 @@
 package com.apiumhub.fakeserver
 
+import com.thedeanda.lorem.LoremIpsum
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
@@ -13,6 +14,9 @@ import io.ktor.routing.Routing
 import io.ktor.routing.get
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import java.util.UUID
+
+private val loremGenerator = LoremIpsum.getInstance()
 
 object FakeServer {
   fun start() {
@@ -23,7 +27,7 @@ object FakeServer {
 fun Application.module() {
   install(DefaultHeaders)
   install(CallLogging)
-  install(ContentNegotiation) { gson {} }
+  install(ContentNegotiation) { gson() }
   install(Routing) {
     get("/status") {
       call.respond(HttpStatusCode.OK, Test())
@@ -31,9 +35,9 @@ fun Application.module() {
     get("/timeline") {
       call.respond(
         HttpStatusCode.OK, listOf(
-          Graznee("John", "Hello world!", System.currentTimeMillis()),
-          Graznee("Alice", "This is my first graznee", System.currentTimeMillis()),
-          Graznee("Jane", "Hello from Ktor!", System.currentTimeMillis())
+          Graznee(UUID.randomUUID().toString(), "John", loremGenerator.getWords(20), System.currentTimeMillis()),
+          Graznee(UUID.randomUUID().toString(), "Alice", loremGenerator.getWords(5), System.currentTimeMillis()),
+          Graznee(UUID.randomUUID().toString(), "Jane", loremGenerator.getWords(15), System.currentTimeMillis())
         )
       )
     }
@@ -46,6 +50,7 @@ data class Test(
 )
 
 data class Graznee(
+  val id: String,
   val author: String,
   val body: String,
   val timestamp: Long

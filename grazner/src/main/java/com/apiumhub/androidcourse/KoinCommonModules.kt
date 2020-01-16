@@ -1,6 +1,7 @@
 package com.apiumhub.androidcourse
 
-import com.apiumhub.androidcourse.timeline.data.db.TimelineDatabase
+import androidx.room.Room
+import com.apiumhub.androidcourse.timeline.data.db.TimelineDao
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -28,5 +29,10 @@ val koinNetworkModule = module {
 }
 
 val koinDatabaseModule = module {
-  single { TimelineDatabase() }
+  single {
+    Room
+      .databaseBuilder(get(), AppDatabase::class.java, "grazner_db")
+      .fallbackToDestructiveMigration()
+      .build()
+  }
 }
