@@ -1,4 +1,4 @@
-package com.apiumhub.androidcourse.ui.notifications
+package com.apiumhub.androidcourse.notifications
 
 import android.os.Bundle
 import android.view.LayoutInflater

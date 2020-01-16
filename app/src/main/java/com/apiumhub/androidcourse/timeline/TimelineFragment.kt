@@ -1,4 +1,4 @@
-package com.apiumhub.androidcourse.ui.dashboard
+package com.apiumhub.androidcourse.timeline
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.apiumhub.androidcourse.R
 
-class DashboardFragment : Fragment() {
+class TimelineFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var timelineViewModel: TimelineViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
+        timelineViewModel =
+            ViewModelProviders.of(this).get(TimelineViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_dashboard, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(this, Observer {
+        timelineViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root
