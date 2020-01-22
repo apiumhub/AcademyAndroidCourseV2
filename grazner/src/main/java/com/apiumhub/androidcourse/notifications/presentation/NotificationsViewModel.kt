@@ -8,15 +8,18 @@ import com.apiumhub.androidcourse.notifications.domain.NotificationsService
 
 class NotificationsViewModel(notificationsService: NotificationsService) : ViewModel() {
 
-    private val notificationsPrivate: MutableLiveData<List<Notification>> = MutableLiveData()
-    val notifications: LiveData<List<Notification>> = notificationsPrivate
+  private val notificationsPrivate: MutableLiveData<List<Notification>> = MutableLiveData()
+  val notifications: LiveData<List<Notification>> = notificationsPrivate
 
-    private val errorsPrivate: MutableLiveData<Throwable> = MutableLiveData()
-    val errors: LiveData<Throwable> = errorsPrivate
+  private val errorsPrivate: MutableLiveData<Throwable> = MutableLiveData()
+  val errors: LiveData<Throwable> = errorsPrivate
 
-    init {
-        notificationsService.getNotifications()
-    }
-
-
+  init {
+    notificationsService.getNotifications({
+      //Need to use postValue as this runs on a background thread
+      notificationsPrivate.postValue(it)
+    }, {
+      errorsPrivate.postValue(it)
+    })
+  }
 }
