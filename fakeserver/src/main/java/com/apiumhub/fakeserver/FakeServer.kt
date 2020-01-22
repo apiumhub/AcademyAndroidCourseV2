@@ -9,9 +9,11 @@ import io.ktor.features.DefaultHeaders
 import io.ktor.gson.gson
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.HttpStatusCode.Companion
+import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.Routing
 import io.ktor.routing.get
+import io.ktor.routing.post
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.netty.util.internal.logging.InternalLoggerFactory
@@ -73,6 +75,27 @@ private fun Application.module() {
         else -> call.respond(HttpStatusCode.OK)
       }
     }
+
+//    get("/user/profile/{userId}") {
+//      when (call.parameters["userId"]) {
+//        "invalidUserId" -> call.respond(HttpStatusCode.BadRequest, "Invalid user ID")
+//        else -> call.respond(HttpStatusCode.OK, TODO())
+//      }
+//    }
+//
+//    get("/user/me") {
+//      call.respond(Companion.OK, TODO())
+//    }
+//
+//    post("/graznee/new") {
+//      val graznee = call.receive<InputGraznee>()
+//      call.respond(Companion.OK, Graznee(UUID.randomUUID().toString(), ))
+//
+//    }
+//
+//    post {"/login"} {
+//
+//    }
   }
 }
 
@@ -148,6 +171,10 @@ private val usersList
     User(UUID.randomUUID().toString(), loremGenerator.getWords(2), loremGenerator.getWords(Random.nextInt(5, 20)), "https://api.adorable.io/avatars/${Random.nextInt(0, 100)}", grazneesList.subList(0, 15)),
     User(UUID.randomUUID().toString(), loremGenerator.getWords(2), loremGenerator.getWords(Random.nextInt(5, 20)), "https://api.adorable.io/avatars/${Random.nextInt(0, 100)}", grazneesList.subList(0, 15))
   )
+
+private data class InputGraznee(
+  val body: String
+)
 
 private data class Graznee(
   val id: String,

@@ -1,7 +1,6 @@
 package com.apiumhub.androidcourse.timeline
 
 import com.apiumhub.androidcourse.AppDatabase
-import com.apiumhub.androidcourse.notifications.data.network.NotificationsApi
 import com.apiumhub.androidcourse.timeline.data.NetworkAndDbTimelineRepository
 import com.apiumhub.androidcourse.timeline.data.network.TimelineApi
 import com.apiumhub.androidcourse.timeline.domain.TimelineRepository
