@@ -72,7 +72,7 @@ dependencies {
   implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
   implementation "androidx.navigation:navigation-fragment-ktx:$lifecycle_version"
   implementation "androidx.navigation:navigation-ui-ktx:$lifecycle_version"
-  kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+  implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
 
   implementation "org.koin:koin-android:$koin_version"
   implementation "org.koin:koin-androidx-viewmodel:$koin_version"
@@ -89,6 +89,8 @@ dependencies {
   kapt "androidx.room:room-compiler:$room_version"
 
   testImplementation "junit:junit:4.12"
+  testImplementation "io.mockk:mockk:1.9.3"
+
   androidTestImplementation "androidx.test.ext:junit:1.1.1"
   androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
 }
