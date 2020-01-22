@@ -11,9 +11,9 @@ import com.apiumhub.androidcourse.timeline.presentation.TimelineAdapter.GrazneeV
 import kotlinx.android.synthetic.main.graznee_layout.view.authorNameTv
 import kotlinx.android.synthetic.main.graznee_layout.view.grazneeBodyTv
 import kotlinx.android.synthetic.main.graznee_layout.view.timestampTv
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.format.DateTimeFormatter
-import org.threeten.bp.format.FormatStyle.SHORT
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle.SHORT
 
 class TimelineAdapter : RecyclerView.Adapter<GrazneeViewHolder>() {
 
