@@ -8,14 +8,21 @@ import com.apiumhub.androidcourse.timeline.domain.Graznee
 import com.apiumhub.androidcourse.timeline.domain.TimelineService
 import kotlinx.coroutines.launch
 
-class TimelineViewModel(private val timelineService: TimelineService) : ViewModel() {
+class TimelineViewModel(timelineService: TimelineService) : ViewModel() {
 
   private val grazneesPrivate: MutableLiveData<List<Graznee>> = MutableLiveData()
   val graznees: LiveData<List<Graznee>> = grazneesPrivate
 
+  private val errorsPrivate: MutableLiveData<Throwable> = MutableLiveData()
+  val errors: LiveData<Throwable> = errorsPrivate
+
   init {
     viewModelScope.launch {
-      grazneesPrivate.postValue(timelineService.getTimeline())
+      runCatching {
+        grazneesPrivate.postValue(timelineService.getTimeline())
+      }.getOrElse {
+        errorsPrivate.value = it
+      }
     }
   }
 }
