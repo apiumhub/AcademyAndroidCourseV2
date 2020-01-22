@@ -15,11 +15,7 @@ class NotificationsViewModel(notificationsService: NotificationsService) : ViewM
     val errors: LiveData<Throwable> = errorsPrivate
 
     init {
-        notificationsService.getNotifications({
-            notificationsPrivate.value = it
-        },{
-            errorsPrivate.value = it
-        })
+        notificationsService.getNotifications()
     }
 
 

@@ -1,13 +1,17 @@
 package com.apiumhub.androidcourse.notifications.data
 
 import com.apiumhub.androidcourse.notifications.data.network.NotificationsApi
+import com.apiumhub.androidcourse.notifications.domain.NetworkException
 import com.apiumhub.androidcourse.notifications.domain.Notification
+import com.apiumhub.androidcourse.notifications.domain.NotificationType.FAVORITE
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.Request
 import okhttp3.ResponseBody
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertThat
 import org.junit.Assert.fail
 import org.junit.Test
 import retrofit2.Call
@@ -17,24 +21,22 @@ import java.util.concurrent.CountDownLatch
 
 class NetworkNotificationsRepositoryTest {
 
+  private val notificationsList = listOf(
+    Notification("someId", "someBody", FAVORITE)
+  )
+
   private val notificationsApi = mockk<NotificationsApi>()
-
   private val sut = NetworkNotificationsRepository(notificationsApi)
-
-  private val onSuccess: (List<Notification>) -> Unit = mockk(relaxed = true)
-  private val onError: (Throwable) -> Unit = mockk(relaxed = true)
 
   @Test
   fun `getNotifications should execute onSuccess callback when api returns success`() {
     every {
       notificationsApi.getNotifications()
-    } returns MockCall.buildSuccess(emptyList())
+    } returns MockCall.buildSuccess(notificationsList)
 
-    sut.getNotifications(onSuccess, onError)
+    val notifications = sut.getNotifications()
 
-    verify {
-      onSuccess.invoke(any())
-    }
+    assertEquals(notificationsList, notifications)
   }
 
   @Test
@@ -43,10 +45,11 @@ class NetworkNotificationsRepositoryTest {
       notificationsApi.getNotifications()
     } returns MockCall.buildHttpError(500, "text/plain", "Unknown server error")
 
-    sut.getNotifications(onSuccess, onError)
-
-    verify {
-      onError.invoke(any())
+    runCatching {
+      sut.getNotifications()
+      fail()
+    }.getOrElse {
+      assert(it is NetworkException)
     }
   }
 }
