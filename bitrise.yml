@@ -84,11 +84,6 @@ workflows:
       - install-missing-android-tools@2.3.7:
           inputs:
             - gradlew_path: "$PROJECT_LOCATION/gradlew"
-      - android-lint@0.9.6:
-          inputs:
-            - project_location: "$PROJECT_LOCATION"
-            - module: "$MODULE"
-            - variant: "$VARIANT"
       - android-unit-test@1.0.0:
           inputs:
             - project_location: "$PROJECT_LOCATION"
@@ -96,7 +91,7 @@ workflows:
             - variant: "$VARIANT"
       - deploy-to-bitrise-io@1.9.2: {}
       - cache-push@2.2.1: {}
-grazner:
+app:
   envs:
     - opts:
         is_expand: false
