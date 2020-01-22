@@ -13,7 +13,7 @@ dependencies {
     implementation "io.ktor:ktor-client-android:$ktor_version"
     implementation "io.ktor:ktor-client-serialization-jvm:$ktor_version"
     implementation "com.thedeanda:lorem:2.1"
-    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.2'
+    implementation "ch.qos.logback:logback-classic:1.2.3"
 
     testImplementation "junit:junit:4.12"
 }
