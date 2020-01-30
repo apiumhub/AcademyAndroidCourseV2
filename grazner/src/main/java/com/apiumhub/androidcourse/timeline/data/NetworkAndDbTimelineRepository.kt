@@ -1,5 +1,6 @@
 package com.apiumhub.androidcourse.timeline.data
 
+import com.apiumhub.androidcourse.timeline.data.db.GrazneeDbEntity
 import com.apiumhub.androidcourse.timeline.data.db.TimelineDao
 import com.apiumhub.androidcourse.timeline.data.network.TimelineApi
 import com.apiumhub.androidcourse.timeline.domain.Graznee
@@ -10,6 +11,9 @@ class NetworkAndDbTimelineRepository(
   private val dbClient: TimelineDao
 ) : TimelineRepository {
   override suspend fun getTimeline(): List<Graznee> =
-    runCatching { api.getTimeline().map(::Graznee) }
-      .getOrElse { dbClient.getAll().map(::Graznee) }
+    runCatching {
+      api.getTimeline().also { dbClient.insertAll(it.map(::GrazneeDbEntity)) }.map(::Graznee)
+    }.getOrElse {
+      dbClient.getAll().map(::Graznee)
+    }
 }

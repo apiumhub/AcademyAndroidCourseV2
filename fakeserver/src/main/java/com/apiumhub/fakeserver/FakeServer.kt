@@ -9,11 +9,9 @@ import io.ktor.features.DefaultHeaders
 import io.ktor.gson.gson
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.HttpStatusCode.Companion
-import io.ktor.request.receive
 import io.ktor.response.respond
 import io.ktor.routing.Routing
 import io.ktor.routing.get
-import io.ktor.routing.post
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.netty.util.internal.logging.InternalLoggerFactory
@@ -31,7 +29,6 @@ internal fun main() {
 
 object FakeServer {
   fun start() {
-
     InternalLoggerFactory.setDefaultFactory(JdkLoggerFactory.INSTANCE)
     embeddedServer(Netty, 8080, module = Application::module).start()
   }

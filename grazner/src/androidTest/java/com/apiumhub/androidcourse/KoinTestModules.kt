@@ -7,8 +7,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-val koinNetworkModule = module {
-
+val networkTestModule = module(override = true) {
   single {
     OkHttpClient.Builder().addInterceptor(
       HttpLoggingInterceptor().also {
@@ -20,17 +19,17 @@ val koinNetworkModule = module {
   single {
     Retrofit
       .Builder()
-      .baseUrl(BuildConfig.API_URL)
+      .baseUrl("http://localhost:8080")
       .client(get())
       .addConverterFactory(GsonConverterFactory.create())
       .build()
   }
 }
 
-val koinDatabaseModule = module {
+val dbTestModule = module(override = true) {
   single {
     Room
-      .databaseBuilder(get(), AppDatabase::class.java, "grazner_db")
+      .inMemoryDatabaseBuilder(get(), AppDatabase::class.java)
       .fallbackToDestructiveMigration()
       .build()
   }

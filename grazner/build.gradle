@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+  flavorDimensions "default"
   compileSdkVersion 29
   buildToolsVersion "29.0.2"
   defaultConfig {
@@ -51,6 +52,17 @@ android {
     targetCompatibility 1.8
   }
 
+  productFlavors {
+    mock {
+      buildConfigField "String", 'API_URL', '"https://localhost:8080/"'
+      applicationIdSuffix ".mock"
+      versionNameSuffix "-mock"
+    }
+    prod {
+      buildConfigField "String", 'API_URL', '"https://some-prod-url.com/"'
+    }
+  }
+
 }
 
 dependencies {
@@ -92,4 +104,6 @@ dependencies {
   androidTestImplementation "androidx.test.ext:junit:1.1.1"
   androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
   androidTestImplementation "org.koin:koin-test:$koin_version"
+  androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.0"
+  androidTestImplementation "io.mockk:mockk:1.9.3"
 }
