@@ -101,4 +101,4 @@ app:
       MODULE: grazner
     - opts:
         is_expand: false
-      VARIANT: debug
+      VARIANT: mockDebug
