@@ -54,11 +54,6 @@ workflows:
       - change-android-versioncode-and-versionname@1.1.1:
           inputs:
             - build_gradle_path: "$PROJECT_LOCATION/$MODULE/build.gradle"
-      - android-lint@0.9.6:
-          inputs:
-            - project_location: "$PROJECT_LOCATION"
-            - module: "$MODULE"
-            - variant: "$VARIANT"
       - android-unit-test@1.0.0:
           inputs:
             - project_location: "$PROJECT_LOCATION"
