@@ -14,10 +14,13 @@ import kotlinx.android.synthetic.main.graznee_layout.view.timestampTv
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle.SHORT
+import kotlin.properties.Delegates
 
 class TimelineAdapter : RecyclerView.Adapter<GrazneeViewHolder>() {
 
-  var grazneesList = emptyList<Graznee>()
+  var grazneesList: List<Graznee> by Delegates.observable(emptyList()) {_,_, new ->
+    notifyDataSetChanged()
+  }
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
     GrazneeViewHolder(LayoutInflater.from(parent.context).inflate(layout.graznee_layout, parent, false))
