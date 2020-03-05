@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class TimelineViewModel(timelineService: TimelineService) : ViewModel() {
 
   private val grazneesPrivate: MutableLiveData<List<Graznee>> = MutableLiveData()
-  val graznees: LiveData<List<Graznee>> = grazneesPrivate
+  val graznees: MutableLiveData<List<Graznee>> = grazneesPrivate
 
   private val errorsPrivate: MutableLiveData<Throwable> = MutableLiveData()
   val errors: LiveData<Throwable> = errorsPrivate
